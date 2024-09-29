@@ -1,14 +1,18 @@
 import transformers
 import torch
 from transformers import TrainingArguments, Trainer, DataCollatorWithPadding
+import numpy as np
+import evaluate
 
+accuracy_metric = evaluate.load("accuracy")
+precision_metric = evaluate.load("precision")
+recall_metric = evaluate.load("recall")
+f1_metric = evaluate.load("f1")
 
 def get_lora_target_modules(model):
     target_modules = set()
     for name, module in model.named_modules():
-        # Check if the module is of a supported type
         if isinstance(module, (torch.nn.Linear, torch.nn.Embedding, torch.nn.Conv2d, transformers.pytorch_utils.Conv1D)):
-            # Exclude containers like ModuleDict
             if not isinstance(module, torch.nn.ModuleDict):
                 # Check for common attention layer names in the module name
                 if any(key in name.lower() for key in ['q_proj', 'k_proj', 'v_proj', 'out_proj', 'c_attn', 'c_proj', 'fc1', 'fc2', 'wte']):
@@ -25,7 +29,7 @@ def generate_training_args(model_save_name):
     per_device_train_batch_size=2,
     per_device_eval_batch_size=2,
     gradient_accumulation_steps=8,
-    num_train_epochs=3,
+    num_train_epochs=6,
     weight_decay=0.01,
     logging_steps=10,
     load_best_model_at_end=True,
@@ -54,13 +58,9 @@ def compute_metrics(eval_pred):
         "f1": f1["f1"],
     }
 
-# Create validation split function
 def create_validation_split(dataset_dict):
-    # Check if 'train' split exists
     if 'train' in dataset_dict:
-        # Perform train_test_split on the 'train' dataset
         split_dataset = dataset_dict['train'].train_test_split(test_size=0.1)
-        # Update the dataset dictionary
         dataset_dict['train'] = split_dataset['train']
         dataset_dict['validation'] = split_dataset['test']
     else:
