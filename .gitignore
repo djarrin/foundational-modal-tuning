@@ -2,5 +2,4 @@
 env.txt
 .ipynb_checkpoints/
 env/
-results/
 __pycache__/

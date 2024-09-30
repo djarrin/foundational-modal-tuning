@@ -1,0 +1,72 @@
+{
+  "_name_or_path": "openai-community/gpt2",
+  "activation_function": "gelu_new",
+  "architectures": [
+    "GPT2LMHeadModel"
+  ],
+  "attn_pdrop": 0.1,
+  "bos_token_id": 50256,
+  "embd_pdrop": 0.1,
+  "eos_token_id": 50256,
+  "id2label": {
+    "0": "blog11518",
+    "1": "blog25872",
+    "2": "obama",
+    "3": "fitzgerald",
+    "4": "hemingway",
+    "5": "woolf",
+    "6": "bush",
+    "7": "blog30102",
+    "8": "blog5546",
+    "9": "trump",
+    "10": "blog30407",
+    "11": "qq",
+    "12": "pp",
+    "13": "h"
+  },
+  "initializer_range": 0.02,
+  "label2id": {
+    "blog11518": 0,
+    "blog25872": 1,
+    "blog30102": 7,
+    "blog30407": 10,
+    "blog5546": 8,
+    "bush": 6,
+    "fitzgerald": 3,
+    "h": 13,
+    "hemingway": 4,
+    "obama": 2,
+    "pp": 12,
+    "qq": 11,
+    "trump": 9,
+    "woolf": 5
+  },
+  "layer_norm_epsilon": 1e-05,
+  "model_type": "gpt2",
+  "n_ctx": 1024,
+  "n_embd": 768,
+  "n_head": 12,
+  "n_inner": null,
+  "n_layer": 12,
+  "n_positions": 1024,
+  "pad_token_id": 50256,
+  "problem_type": "single_label_classification",
+  "reorder_and_upcast_attn": false,
+  "resid_pdrop": 0.1,
+  "scale_attn_by_inverse_layer_idx": false,
+  "scale_attn_weights": true,
+  "summary_activation": null,
+  "summary_first_dropout": 0.1,
+  "summary_proj_to_labels": true,
+  "summary_type": "cls_index",
+  "summary_use_proj": true,
+  "task_specific_params": {
+    "text-generation": {
+      "do_sample": true,
+      "max_length": 50
+    }
+  },
+  "transformers_version": "4.44.1",
+  "use_cache": true,
+  "vocab_size": 50257
+}
