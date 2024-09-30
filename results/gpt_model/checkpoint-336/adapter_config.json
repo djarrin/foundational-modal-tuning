@@ -1,9 +1,9 @@
 {
   "alpha_pattern": {},
   "auto_mapping": null,
-  "base_model_name_or_path": "openai-community/gpt2",
+  "base_model_name_or_path": "distilbert/distilbert-base-uncased",
   "bias": "none",
-  "fan_in_fan_out": true,
+  "fan_in_fan_out": false,
   "inference_mode": true,
   "init_lora_weights": true,
   "layer_replication": null,
@@ -23,9 +23,18 @@
   "rank_pattern": {},
   "revision": null,
   "target_modules": [
-    "wte",
-    "c_proj",
-    "c_attn"
+    "distilbert.transformer.layer.1.ffn.lin2",
+    "distilbert.transformer.layer.5.ffn.lin2",
+    "distilbert.transformer.layer.3.ffn.lin1",
+    "distilbert.transformer.layer.1.ffn.lin1",
+    "distilbert.transformer.layer.0.ffn.lin1",
+    "distilbert.transformer.layer.4.ffn.lin1",
+    "distilbert.transformer.layer.0.ffn.lin2",
+    "distilbert.transformer.layer.3.ffn.lin2",
+    "distilbert.transformer.layer.4.ffn.lin2",
+    "distilbert.transformer.layer.2.ffn.lin1",
+    "distilbert.transformer.layer.2.ffn.lin2",
+    "distilbert.transformer.layer.5.ffn.lin1"
   ],
   "task_type": "SEQ_CLS",
   "use_dora": false,

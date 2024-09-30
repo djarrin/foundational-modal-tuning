@@ -1,5 +1,5 @@
 ---
-base_model: openai-community/gpt2
+base_model: distilbert/distilbert-base-uncased
 library_name: peft
 ---
 

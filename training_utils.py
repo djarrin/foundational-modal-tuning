@@ -12,10 +12,11 @@ f1_metric = evaluate.load("f1")
 def get_lora_target_modules(model):
     target_modules = set()
     for name, module in model.named_modules():
+        # Check for specific layer types
         if isinstance(module, (torch.nn.Linear, torch.nn.Embedding, torch.nn.Conv2d, transformers.pytorch_utils.Conv1D)):
             if not isinstance(module, torch.nn.ModuleDict):
-                # Check for common attention layer names in the module name
-                if any(key in name.lower() for key in ['q_proj', 'k_proj', 'v_proj', 'out_proj', 'c_attn', 'c_proj', 'fc1', 'fc2', 'wte']):
+                # Check for common attention and feed-forward layer names in DistilBERT
+                if any(key in name.lower() for key in ['query', 'key', 'value', 'dense', 'output', 'ffn']):
                     target_modules.add(name)
     return list(target_modules)
 

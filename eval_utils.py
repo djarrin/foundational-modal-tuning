@@ -22,6 +22,9 @@ def get_prediction(model, text, tokenizer):
     if not isinstance(text, str):
         raise ValueError("Input text must be a string")
 
+    if tokenizer.pad_token is None:
+        tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+        
     inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True, max_length=512)
 
     outputs = model(**inputs)

@@ -22,7 +22,7 @@ def generate_trainer(ds, lora_config, save_path):
     id2label = {i: style for i, style in enumerate(unique_styles)}
     label2id = {v: k for k, v in id2label.items()}
 
-    gpt_model_key = "openai-community/gpt2"
+    gpt_model_key = "distilbert/distilbert-base-uncased"
     gpt_model = AutoModelForSequenceClassification.from_pretrained(
         gpt_model_key,
         num_labels=num_labels,
